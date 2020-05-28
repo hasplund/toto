@@ -1,8 +1,15 @@
 const Agenda = require('agenda');
 
-const agenda = new Agenda();
+// Or override the default collection name:
+const agenda = new Agenda({db: {address: mongoConnectionString, collection: 'agendaJobs'}});
 
-agenda
-    .database('localhost:27017/toto', 'agenda', { useUnifiedTopology: true})
-    .processEvery('5 seconds');
+/*
+agenda.define('delete old users', async job => {
+    await User.remove({lastLogIn: {$lt: twoDaysAgo}});
+});
 
+(async function() { // IIFE to give access to async/await
+    await agenda.start();
+
+    await agenda.every('3 minutes', 'delete old users');
+*/
